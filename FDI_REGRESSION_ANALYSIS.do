@@ -362,7 +362,7 @@ line resid time, yline(0)
 scatter resid time, yline(0)
 * Fortunately, in both residual plots, one where we use scatter plot observations and one where we use a line plot, we can see random, unbiased variation of the residuals in the regression. In other words, our observed variables don't gear off into an unexplained pattern outside of our regression slope. 
 
-* To explain the value of adding ", robust" at the end of our regression, we can see that without the command our standard errors (and thus our signficant levels) are altered. We will also that this regression is going to be biased, as it fails the  heteroskedasticity test. Since we reject the null hypothesis, at the 1% level, of equal variance between residuals, we can say that these residuals are not homoskedastic and biased. 
+* To explain the value of adding ", robust" at the end of our regression, we can see that without the command our standard errors (and thus our signficant levels) are altered. We will also that this regression is going to be biased, as it fails the heteroskedasticity test. Since we reject the null hypothesis, at the 1% level, of equal variance between residuals, we can say that these residuals are not homoskedastic and biased. 
 reg lnFDI lnGDP, r
 reg lnFDI lnGDP
 *hettest
@@ -482,7 +482,7 @@ est store reg_`i'
  }
 * In this loop, I am running 58 regressions corresponding to each year, to see whether the coefficent of effect has changed at all during the years. I only did it for these specific years, because Stata and my computer would not be able to load that many regressions all at once, and I really only need to prove that the effect changes throughout the years by using one country with 1960-2018 observations. Here, I chose the time statement for the country of Mexico for these 58 years. 
 coefplot reg_*, drop(_cons) nokey 
-* Here we are determining whether the relationship of lnGDP on lnFDI has changed in way where there might be some unobserved heterogeneity as some unobserved varibales may be correlated with either our FDI or GDP value. We can see, in part, this is true as there is some sort of shift between the effect of lnGDP on lnFDI throughout the years. The fixed effect models attempts to control for these individual characteristic effects. 
+* Here we are determining whether the relationship of lnGDP on lnFDI has changed in way where there might be some unobserved heterogeneity present as some unobserved variables may be correlated with either our FDI or GDP value. We can see, in part, this is true as there is some sort of shift between the effect of lnGDP on lnFDI throughout the years. The fixed effect models attempts to control for these individual characteristic effects. 
 
 foreach i of num 1181/1239{
 reg lnFDI lnGDP if t>`i' & t<`i' + 1239

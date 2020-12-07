@@ -1905,7 +1905,8 @@ F test that all u_i=0: F({res}26{txt}, {res}494{txt}) = {res}15.39{col 62}{txt}P
 
 {com}. * asdoc xtreg lnFDI lnGDP lnEXCHANGE lnLIFE lnCRIME, fe
 
-. * With our new model controlling for fixed effects, we use the "within" r^2 value which is .6055. Notice how the coefficient of effects have changed somewhat significantly. Not only had I thought it would be useful to control for aggregate trends throughout the years that may have affected my coefficent results, but I had a strong belief that my regression suffered from reverse causality. Essentially, a increasing FDI would cause a greater GDP to be produced. The worry was that a continuous increase in FDI would lead to an increase in GDP. Foreign Direct Investment would take off and inject the economy with new growth, not present in the lagged effects. I believe this is the best way to control for this. 
+. * With our new model controlling for fixed effects, we use the "within" r^2 value which is .6055. Notice how the coefficient of effects have changed somewhat significantly. 
+. * Additionally, if I had strong belief that my regression suffered from reverse causality. Essentially, an increasing FDI would cause a greater GDP to be produced, as with the worry that a continuous increase in FDI would lead to an increase in GDP, then I could use instrumental variables. However, for now, I am more worried about Foreign Direct Investment taking off and injecting the economy with new growth, not detected under standard OLS predictions. I believe fixed effects is the best way to control for this. 
 
 . 
 . * In these loops I will try to provide evidence of varying effects in my variables throughout various years. 
@@ -2753,7 +2754,7 @@ all files already exist and are up to date.
 
 . coefplot reg_*, drop(_cons) nokey 
 {res}
-{com}. * Here we are determining whether the relationship of lnGDP on lnFDI has changed in way where there might be some reverse casuality as a higher FDI value would cause a higher GDP value. We can see, in part, this is true as there is some sort of shift between the effect of lnGDP on lnFDI throughout the years. The fixed effect models attempts to control for these lagged effects. 
+{com}. * Here we are determining whether the relationship of lnGDP on lnFDI has changed in way where there might be some unobserved heterogeneity as with unobserved variables becoming correlated with the error terms of our regression variables. We can see, in part, this is true as there is some sort of shift between the effect of lnGDP on lnFDI throughout the years. The fixed effect models attempts to control for this along with lagged effects. 
 
 . 
 . foreach i of num 1181/1239{c -(}
@@ -3696,7 +3697,7 @@ F test that all u_i=0: F({res}26{txt}, {res}494{txt}) = {res}15.39{col 62}{txt}P
 . * This is the graphical representation of how some of our valid control variables have changed over our observed period.  
 
 . 
-. * To conclude, after controlling for the possiblity of lagged effects, reverse causality, aggregate trends, multicollinearity, and statistical signficance, we are only left with a handful of variables. What we can say, from our "model6", is that there is a definite positive relationship with a growing economy and foreign direct investment. Additionally, there is negative impact of violence, a positive effect of health, and a positive effect of a depreciating exchange rate on a country's foreign tangible investment. From these observations we can predict that for these Latin American countries, along with the United States, if health is not improved, if economic growth is not continuous, if local currencies are overvalued on the world market, and if homicide rates increase, foreign confidence in the growth prospects of these countries will decline. 
+. * To conclude, after controlling for the possiblity of lagged effects, unobserved heterogeneity and aggregate trends, multicollinearity, and statistical signficance, we are only left with a handful of variables. What we can say, from our "model6", is that there is a definite positive relationship with a growing economy and foreign direct investment. Additionally, there is negative impact of violence, a positive effect of health, and a positive effect of a depreciating exchange rate on a country's foreign tangible investment. From these observations we can predict that for these Latin American countries, along with the United States, if health is not improved, if economic growth is not continuous, if local currencies are overvalued on the world market, and if homicide rates increase, foreign confidence in the growth prospects of these countries will decline. 
 
 . log close
       {txt}name:  {res}<unnamed>

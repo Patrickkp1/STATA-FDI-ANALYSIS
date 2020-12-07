@@ -470,7 +470,8 @@ xtreg lnFDI lnGDP lnLIFE lnEXCHANGE lnCRIME, fe
 xtreg lnFDI lnGDP lnEXCHANGE lnLIFE lnCRIME, fe
 * asdoc xtreg lnFDI lnGDP lnEXCHANGE lnLIFE lnCRIME, fe
 * With our new model controlling for fixed effects, we use the "within" r^2 value which is .6055. Notice how the coefficient of effects have changed somewhat significantly. 
-* Not only had I thought it would be useful to control for aggregate trends throughout the years that may have affected my coefficent results, but I had a strong belief that my regression suffered from reverse causality. Essentially, a increasing FDI would cause a greater GDP to be produced. The worry was that a continuous increase in FDI would lead to an increase in GDP. Foreign Direct Investment would take off and inject the economy with new growth, not present in the lagged effects. I believe this is the best way to control for this. 
+* When working with any panel data I think it's a useful idea to control for aggregate trends throughout the years that may have affected my coefficent results.
+* Additionally, if I had strong belief that my regression suffered from reverse causality. Essentially, an increasing FDI would cause a greater GDP to be produced, as with the worry that a continuous increase in FDI would lead to an increase in GDP, then I could use instrumental variables. However, for now, I am more worried about Foreign Direct Investment taking off and injecting the economy with new growth, not detected under standard OLS predictions. I believe fixed effects is the best way to control for this. 
 
 * In these loops I will try to provide evidence of varying effects in my variables throughout various years. 
 gen t = _n

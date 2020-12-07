@@ -446,7 +446,7 @@ elasticregress lnFDI lnGDP POVERTY EXCHANGE lnLIFE TAX EASE
 reg lnFDI lnGDP EXCHANGE POVERTY lnLIFE EASE, r
 * Currently we are left with this regression, where are arn't lacking any major statistical signficance. However, I will attempt to make my estimators more precise, going into my time series analysis. 
 
-* While I've made sure to control for multicollinearity, insignificant coefficents, and eliminate variables with small samples, I haven't controlled for the possibility of reverse causality or time-invariant unobserved individual characteristics, across countries and years, that can be correlated with our current independent variables.
+* While I've made sure to control for multicollinearity, insignificant coefficents, and eliminate variables with small samples, I haven't controlled for the possibility of lagged effects or time-invariant unobserved individual characteristics, across countries and years, that can be correlated with our current independent variables.
 * It is generally always important to control for year effects in our regression, as it takes into account aggregate rising trends that would either inflate or deflate our coefficent of effects on our explanatory variables.
 * First however, we need to determine whether we will be using random effects or fixed effects regression. I have a feeling we will be using fixed effects, but we can test for this in the following lines. 
 
@@ -469,7 +469,8 @@ xtreg lnFDI lnGDP lnLIFE lnEXCHANGE lnCRIME, fe
 * This is the ideal regression estimator. It might appear a little bizzare that lnEXCHANGE now has a positive effect on FDI, however, after controlling for yearly fixed effects, it would make sense that foreign investors would prefer a country whose currency is already constantly in demand, as a higher demand for a country's currency signals that the value of their goods on the world market may be higher than before.  
 xtreg lnFDI lnGDP lnEXCHANGE lnLIFE lnCRIME, fe
 * asdoc xtreg lnFDI lnGDP lnEXCHANGE lnLIFE lnCRIME, fe
-* With our new model controlling for fixed effects, we use the "within" r^2 value which is .6055. Notice how the coefficient of effects have changed somewhat significantly. Not only had I thought it would be useful to control for aggregate trends throughout the years that may have affected my coefficent results, but I had a strong belief that my regression suffered from reverse causality. Essentially, a increasing FDI would cause a greater GDP to be produced. The worry was that a continuous increase in FDI would lead to an increase in GDP. Foreign Direct Investment would take off and inject the economy with new growth, not present in the lagged effects. I believe this is the best way to control for this. 
+* With our new model controlling for fixed effects, we use the "within" r^2 value which is .6055. Notice how the coefficient of effects have changed somewhat significantly. 
+* Not only had I thought it would be useful to control for aggregate trends throughout the years that may have affected my coefficent results, but I had a strong belief that my regression suffered from reverse causality. Essentially, a increasing FDI would cause a greater GDP to be produced. The worry was that a continuous increase in FDI would lead to an increase in GDP. Foreign Direct Investment would take off and inject the economy with new growth, not present in the lagged effects. I believe this is the best way to control for this. 
 
 * In these loops I will try to provide evidence of varying effects in my variables throughout various years. 
 gen t = _n
@@ -481,7 +482,7 @@ est store reg_`i'
  }
 * In this loop, I am running 58 regressions corresponding to each year, to see whether the coefficent of effect has changed at all during the years. I only did it for these specific years, because Stata and my computer would not be able to load that many regressions all at once, and I really only need to prove that the effect changes throughout the years by using one country with 1960-2018 observations. Here, I chose the time statement for the country of Mexico for these 58 years. 
 coefplot reg_*, drop(_cons) nokey 
-* Here we are determining whether the relationship of lnGDP on lnFDI has changed in way where there might be some reverse casuality as a higher FDI value would cause a higher GDP value. We can see, in part, this is true as there is some sort of shift between the effect of lnGDP on lnFDI throughout the years. The fixed effect models attempts to control for these lagged effects. 
+* Here we are determining whether the relationship of lnGDP on lnFDI has changed in way where there might be some unobserved heterogeneity as some unobserved varibales may be correlated with either our FDI or GDP value. We can see, in part, this is true as there is some sort of shift between the effect of lnGDP on lnFDI throughout the years. The fixed effect models attempts to control for these individual characteristic effects. 
 
 foreach i of num 1181/1239{
 reg lnFDI lnGDP if t>`i' & t<`i' + 1239

@@ -1712,7 +1712,7 @@ Consider re-running estimation with a smaller epsilon.
 {com}. * Currently we are left with this regression, where are arn't lacking any major statistical signficance. However, I will attempt to make my estimators more precise, going into my time series analysis. 
 
 . 
-. * While I've made sure to control for multicollinearity, insignificant coefficents, and eliminate variables with small samples, I haven't controlled for the possibility of reverse causality or time-invariant unobserved individual characteristics, across countries and years, that can be correlated with our current independent variables.
+. * While I've made sure to control for multicollinearity, insignificant coefficents, and eliminate variables with small samples, I haven't controlled for the possibility of unobserved heterogeneity as with time-invariant unobserved individual characteristics, across countries and years, that can be correlated with our current independent variables.
 
 . * It is generally always important to control for year effects in our regression, as it takes into account aggregate rising trends that would either inflate or deflate our coefficent of effects on our explanatory variables.
 
